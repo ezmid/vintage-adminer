@@ -27,7 +27,7 @@ COPY ./docker /
 ################################################################################
 # Layer 3 - Download Adminer
 RUN wget https://github.com/vrana/adminer/releases/download/v${ADMINER_VERSION}/adminer-${ADMINER_VERSION}-mysql-en.php -O /var/www/app/adminer.php
-    
+
 
 ################################################################################
 # Layer 4 - Defalt non root user for runtime

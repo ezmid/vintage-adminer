@@ -1,5 +1,7 @@
 # Vintage Docker Adminer
 
+[![Build Status](https://travis-ci.org/ezmid/vintage-adminer.svg?branch=master)](https://travis-ci.org/ezmid/vintage-adminer) ![Docker Hub Status](https://img.shields.io/docker/build/ezmid/vintage-adminer.svg) ![Image Pulls](https://img.shields.io/docker/pulls/ezmid/vintage-adminer.svg) ![Image Stars](https://img.shields.io/docker/stars/ezmid/vintage-adminer.svg)
+
 This is a simple Adminer container build on Alpine Linux.
 
 ## Installation
