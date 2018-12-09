@@ -1,0 +1,48 @@
+file:
+  /var/www/app/adminer.php:
+    exists: true
+    mode: "0644"
+    size: 208150
+    owner: root
+    group: root
+    filetype: file
+    contains: []
+  /var/www/app/index.php:
+    exists: true
+    mode: "0644"
+    size: 673
+    owner: root
+    group: root
+    filetype: file
+    contains: []
+package:
+  php7:
+    installed: true
+    versions:
+    - 7.2.13-r0
+  php7-fpm:
+    installed: true
+    versions:
+    - 7.2.13-r0
+port:
+  tcp6:9000:
+    listening: true
+    ip:
+    - '::'
+user:
+  www-data:
+    exists: true
+    uid: 82
+    gid: 82
+    groups:
+    - root
+    - www-data
+    home: /home/www-data
+    shell: /sbin/halt
+group:
+  www-data:
+    exists: true
+    gid: 82
+process:
+  php-fpm7:
+    running: true

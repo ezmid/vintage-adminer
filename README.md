@@ -27,6 +27,3 @@ This is a simple Adminer container build on Alpine Linux.
 # Push a specific tag
 [user@dev ~]$ make push TAG=1.1.0
 ```
-
-## Integration
-Travis CI

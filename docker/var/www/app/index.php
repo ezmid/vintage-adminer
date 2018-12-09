@@ -16,10 +16,8 @@ function adminer_object()
     public function name()
     {
         $names = [
-            '~~ ^Vladis ~~',
-            '~ Vladislav ~',
-            '~~~ Vlado ~~~',
-            '~ VladMiner ~'
+            '~~ Adminer ~~',
+            '~~ Renimda ~~',
         ];
         
         return $names[mt_rand(0, count($names)-1)];
