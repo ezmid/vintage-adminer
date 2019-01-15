@@ -1,0 +1,4 @@
+0.0.0.0
+root /var/www/app
+fastcgi / 127.0.0.1:9000 php # php variant only
+on startup php-fpm7 # php variant only

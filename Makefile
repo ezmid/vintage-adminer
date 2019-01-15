@@ -32,12 +32,13 @@ REGISTRY=hub.docker.com
 NAMESPACE=ezmid
 IMAGE=vintage-adminer
 TAG=latest
+FULL_IMAGE_NAME=${NAMESPACE}/${IMAGE}
 
 ################################################################################
 # Manual
 .ONESHELL: default
 .PHONY: default
-default: 
+default:
 	@$(ECHO) -e "\n$(FORMAT_BOLD)VINTAGE MAKE TOOL$(FORMAT_RESET)\n" \
 	"\n" \
 	"$(FORMAT_YELLOW)Variables:$(FORMAT_RESET)\n" \
@@ -60,18 +61,18 @@ default:
 .PHONY: build
 .ONESHELL: build
 build:
-	docker build . -t $(REGISTRY)/$(NAMESPACE)/$(IMAGE):$(TAG)
+	docker build . -t $(FULL_IMAGE_NAME):$(TAG)
 
 ################################################################################
 # Push the image to registry
 .PHONY: push
 .ONESHELL: push
 push:
-	docker push $(REGISTRY)/$(NAMESPACE)/$(IMAGE):$(TAG)
+	docker push $(FULL_IMAGE_NAME):$(TAG)
 
 ################################################################################
 # Run a test
 .PHONY: test
 .ONESHELL: test
 test:
-	@dgoss run $(REGISTRY)/$(NAMESPACE)/$(IMAGE):$(TAG)
+	@dgoss run $(FULL_IMAGE_NAME):$(TAG)
