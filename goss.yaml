@@ -1,4 +1,8 @@
 file:
+  /etc/Caddyfile:
+    exists: true
+    filetype: file
+    contains: []
   /var/www/app/adminer.php:
     exists: true
     filetype: file
@@ -17,24 +21,14 @@ package:
     versions:
     - 7.2.13-r0
 port:
-  tcp6:9000:
+  tcp:9000:
+    listening: true
+    ip:
+    - 127.0.0.1
+  tcp6:2015:
     listening: true
     ip:
     - '::'
-user:
-  www-data:
-    exists: true
-    uid: 82
-    gid: 82
-    groups:
-    - root
-    - www-data
-    home: /home/www-data
-    shell: /sbin/halt
-group:
-  www-data:
-    exists: true
-    gid: 82
 process:
   php-fpm7:
     running: true
