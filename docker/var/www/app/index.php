@@ -1,7 +1,7 @@
 <?php
 /**
  * Override for permanent auto-login.
- * 
+ *
  * To make it work you need to provide credentials and a database name.
  * ps: Feel free to add cool names.
  */
