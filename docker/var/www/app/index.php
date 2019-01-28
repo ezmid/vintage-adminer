@@ -1,43 +1,73 @@
 <?php
-// Override permanent login
-// This will cause Adminer to try the login
-$_GET['username'] = '';
-
-// The Adminer override
+/**
+ * Override for permanent auto-login.
+ * 
+ * To make it work you need to provide credentials and a database name.
+ * ps: Feel free to add cool names.
+ */
+$_GET['username'] = ''; // This line forces Adminer to trigger the auto-login
 function adminer_object()
 {
     class AdminerSoftware extends Adminer
     {
         /**
-         * Alter the name
-         *
-         * @return void
+         * In case there is no environment database specified use this default
+         * @var string
          */
-        public function name()
-        {
-            $names = [
-                '~~ Adminer ~~',
-                '~~ Renimda ~~',
-            ];
+        const DEFAULT_DATABASE = 'project';
 
-            return $names[mt_rand(0, count($names)-1)];
+        /**
+         * In case there is no environment database specified use this default.
+         * @var string
+         */
+        const DEFAULT_HOST = 'mysql';
+
+        /**
+         * In case there is no environment database specified use this default.
+         * @var string
+         */
+        const DEFAULT_USERNAME = 'root';
+
+        /**
+         * In case there is no environment database specified use this default.
+         * @var string
+         */
+        const DEFAULT_PASSWORD = 'root';
+
+        /**
+         * Get the desired auto-login database name
+         * @return string
+         */
+        public function database(): string
+        {
+            return isset($_ENV['DB_NAME']) ? $_ENV['DB_NAME'] : static::DEFAULT_DATABASE;
         }
 
         /**
-         * Preconfigure the credentials
-         *
-         * @return void
+         * Disable empty password check
          */
-        public function credentials()
+        public function login(): bool
         {
-            // server, username and password for connecting to database
-            return ['mysql', 'root', 'root'];
+            return true;
         }
 
+        /**
+         * The auto-login credentials
+         * @return array
+         */
+        public function credentials(): array
+        {
+            // server, username and password for the connection
+            return [
+                isset($_ENV['DB_HOST']) ? $_ENV['DB_HOST'] : static::DEFAULT_HOST,
+                isset($_ENV['DB_USERNAME']) ? $_ENV['DB_USERNAME'] : static::DEFAULT_USERNAME,
+                isset($_ENV['DB_PASSWORD']) ? $_ENV['DB_PASSWORD'] : static::DEFAULT_PASSWORD
+            ];
+        }
     }
 
     return new AdminerSoftware();
 }
 
-// Downloaded during image build
-include_once('./adminer.php');
+# Downloaded during image build
+require_once('./adminer.php');
