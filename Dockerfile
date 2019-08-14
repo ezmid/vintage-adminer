@@ -1,9 +1,9 @@
 ################################################################################
 # Stage 1: Download Adminer
 ################################################################################
-FROM alpine:3.9 AS download
+FROM alpine:3.10 AS download
 LABEL maintainer="Filip Cieker <filip.cieker@ezmid.com>"
-ENV ADMINER_VERSION=4.7.1
+ENV ADMINER_VERSION=4.7.2
 ENV ADMINER_DOWNLOAD_LINK=https://github.com/vrana/adminer/releases/download/v${ADMINER_VERSION}/adminer-${ADMINER_VERSION}-mysql-en.php
 RUN wget ${ADMINER_DOWNLOAD_LINK} -O /tmp/adminer.php
 

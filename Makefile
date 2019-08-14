@@ -22,8 +22,15 @@ FORMAT_GREEN=
 FORMAT_RESET=
 endif
 
-# Echo binary
+# Platform fixes
 ECHO=$(shell which echo)
+OSECHOFLAG=-e
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S),Darwin)
+	ECHO=echo
+	OSECHOFLAG=
+	FORMAT_BOLD=
+endif
 
 ################################################################################
 # Specific project variables
@@ -39,7 +46,7 @@ FULL_IMAGE_NAME=${NAMESPACE}/${IMAGE}
 .ONESHELL: default
 .PHONY: default
 default:
-	@$(ECHO) -e "\n$(FORMAT_BOLD)VINTAGE MAKE TOOL$(FORMAT_RESET)\n" \
+	@$(ECHO) "\n$(FORMAT_BOLD)VINTAGE MAKE TOOL$(FORMAT_RESET)\n" \
 	"\n" \
 	"$(FORMAT_YELLOW)Variables:$(FORMAT_RESET)\n" \
 	"  REGISTRY:                    $(REGISTRY)\n" \
@@ -61,7 +68,7 @@ default:
 .PHONY: build
 .ONESHELL: build
 build:
-	docker build . -t $(FULL_IMAGE_NAME):$(TAG)
+	docker build . -t $(FULL_IMAGE_NAME):$(TAG) --no-cache
 
 ################################################################################
 # Push the image to registry
