@@ -15,11 +15,11 @@ package:
   php7:
     installed: true
     versions:
-    - 7.2.13-r0
+    - 7.3.8-r0
   php7-fpm:
     installed: true
     versions:
-    - 7.2.13-r0
+    - 7.3.8-r0
 port:
   tcp:9000:
     listening: true
